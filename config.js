@@ -1,64 +1,39 @@
-/*
- * Copyright 2015 Telefonica Investigación y Desarrollo, S.A.U
- *
- * This file is part of iotagent-json
- *
- * iotagent-json is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the License,
- * or (at your option) any later version.
- *
- * iotagent-json is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public
- * License along with iotagent-json.
- * If not, seehttp://www.gnu.org/licenses/.
- *
- * For those usages not covered by the GNU Affero General Public License
- * please contact with::[contacto@tid.es]
- */
-var config = {};
+module.exports = {
 
-config.mqtt = {
-    host: 'localhost',
-    port: 1883,
-    thinkingThingsPlugin: true,
-    qos: 0,
-    retain: false
-};
-
-config.iota = {
-    logLevel: 'DEBUG',
-    timestamp: true,
-    contextBroker: {
+    mqtt: {
         host: 'localhost',
-        port: '1026'
+        port: 1883
     },
-    server: {
-        port: 4041
+
+    iota: {
+        logLevel: 'INFO',
+        contextBroker: {
+            url: 'https://context.fiware.cityvision.cloud',
+            ngsiVersion: "v2"
+        },
+        server: {
+            port: 4041
+        },
+        deviceRegistry: {
+            type: 'mongodb'
+        },
+        mongodb: {
+            host: 'context.fiware.cityvision.cloud',
+            port: '27017',
+            db: 'iotagentjson'
+        },
+        types: {},
+        service: 'poc',
+        subservice: '/',
+        providerUrl: 'http://35.159.23.67:4041',
+        deviceRegistrationDuration: 'P1M',
+        defaultType: 'Streetlight',
+        defaultResource: '/iot/json'
     },
-    deviceRegistry: {
-        type: 'mongodb'
-    },
-    mongodb: {
-        host: 'localhost',
-        port: '27017',
-        db: 'iotagentjson'
-    },
-    types: {},
-    service: 'howtoService',
-    subservice: '/howto',
-    providerUrl: 'http://localhost:4041',
-    deviceRegistrationDuration: 'P1M',
-    defaultType: 'Thing',
-    defaultResource: '/iot/json'
+
+    http: {},
+
+    configRetrieval: false,
+    defaultKey: '12345',
+    defaultTransport: 'MQTT'
 };
-
-config.configRetrieval = false;
-config.defaultKey = '1234';
-config.defaultTransport = 'MQTT';
-
-module.exports = config;
