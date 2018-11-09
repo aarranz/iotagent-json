@@ -78,12 +78,15 @@ describe('HTTP: Measure reception ', function() {
         };
 
         nock.cleanAll();
-
+        
+        // This mock does not check the payload since the aim of the test is not to verify
+        // device provisioning functionality. Appropriate verification is done in tests under
+        // provisioning folder of iotagent-node-lib
         contextBrokerMock = nock('http://192.168.1.1:1026')
             .matchHeader('fiware-service', 'smartGondor')
             .matchHeader('fiware-servicepath', '/gardens')
-            .post('/v2/entities')
-            .reply(201);
+            .post('/v2/entities?options=upsert')
+            .reply(204);
 
         iotaJson.start(config, function() {
             request(provisionOptions, function(error, response, body) {
@@ -179,12 +182,14 @@ describe('HTTP: Measure reception ', function() {
 
         beforeEach(function(done) {
             nock.cleanAll();
-
+            // This mock does not check the payload since the aim of the test is not to verify
+            // device provisioning functionality. Appropriate verification is done in tests under
+            // provisioning folder of iotagent-node-lib
             contextBrokerMock = nock('http://192.168.1.1:1026')
                 .matchHeader('fiware-service', 'smartGondor')
                 .matchHeader('fiware-servicepath', '/gardens')
-                .post('/v2/entities')
-                .reply(201);
+                .post('/v2/entities?options=upsert')
+                .reply(204);
 
             contextBrokerMock
                 .matchHeader('fiware-service', 'smartGondor')
@@ -246,12 +251,14 @@ describe('HTTP: Measure reception ', function() {
 
         beforeEach(function(done) {
             nock.cleanAll();
-
+            // This mock does not check the payload since the aim of the test is not to verify
+            // device provisioning functionality. Appropriate verification is done in tests under
+            // provisioning folder of iotagent-node-lib
             contextBrokerMock = nock('http://192.168.1.1:1026')
                 .matchHeader('fiware-service', 'smartGondor')
                 .matchHeader('fiware-servicepath', '/gardens')
-                .post('/v2/entities')
-                .reply(201);
+                .post('/v2/entities?options=upsert')
+                .reply(204);
 
             contextBrokerMock
                 .matchHeader('fiware-service', 'smartGondor')
@@ -301,13 +308,15 @@ describe('HTTP: Measure reception ', function() {
                 k: 'KL223HHV8732SFL1'
             }
         };
-
+        // This mock does not check the payload since the aim of the test is not to verify
+        // device provisioning functionality. Appropriate verification is done in tests under
+        // provisioning folder of iotagent-node-lib
         beforeEach(function(done) {
             contextBrokerMock
                 .matchHeader('fiware-service', 'smartGondor')
                 .matchHeader('fiware-servicepath', '/gardens')
-                .post('/v2/entities')
-                .reply(201);
+                .post('/v2/entities?options=upsert')
+                .reply(204);
 
             contextBrokerMock
                 .matchHeader('fiware-service', 'smartGondor')

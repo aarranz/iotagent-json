@@ -95,12 +95,15 @@ describe('Configuration API support', function() {
                     services: []
                 })
             .reply(200, {});
-
+            
+        // This mock does not check the payload since the aim of the test is not to verify
+        // device provisioning functionality. Appropriate verification is done in tests under
+        // provisioning folder of iotagent-node-lib
         contextBrokerMock = nock('http://192.168.1.1:1026')
             .matchHeader('fiware-service', 'smartGondor')
             .matchHeader('fiware-servicepath', '/gardens')
-            .post('/v2/entities')
-            .reply(201);
+            .post('/v2/entities?options=upsert')
+            .reply(204);
 
         iotagentJson.start(config, done);
     });
